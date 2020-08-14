@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  ftth: 1
+  tab_new: 1
+  tab_change: 1
+  d_card_g: 1
+  d_card_r: 1
+
+two:
+  name: MyString
+  email: MyString
+  ftth: 1
+  tab_new: 1
+  tab_change: 1
+  d_card_g: 1
+  d_card_r: 1
