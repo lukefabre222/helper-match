@@ -1,2 +1,6 @@
 <h1>ユーザーぺーじ</h1>
-<%= @staff.name %>
+<div>
+  <%= @staff.name %>
+</div>
+
+<%= link_to "日報送信", new_staff_report_path(@staff), class:"btn btn-primary" %>

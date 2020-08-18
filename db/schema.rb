@@ -10,23 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_14_133158) do
+ActiveRecord::Schema.define(version: 2020_08_18_152442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "staffs", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
+  create_table "reports", force: :cascade do |t|
+    t.date "worked_on"
     t.integer "ftth"
     t.integer "tab_new"
     t.integer "tab_change"
     t.integer "d_card_g"
     t.integer "d_card_r"
+    t.integer "sls"
+    t.integer "h4d"
+    t.integer "skp"
+    t.integer "reception"
+    t.integer "hs"
+    t.integer "mnp"
+    t.integer "migration"
+    t.bigint "staff_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "shop_name"
+    t.index ["staff_id"], name: "index_reports_on_staff_id"
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.index ["email"], name: "index_staffs_on_email", unique: true
   end
 
+  add_foreign_key "reports", "staffs"
 end

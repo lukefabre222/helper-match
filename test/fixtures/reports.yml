@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  worked_on: 2020-08-19
+  ftth: 1
+  tab_new: 1
+  tab_change: 1
+  d_card_g: 1
+  d_card_r: 1
+  sls: 1
+  h4d: 1
+  skp: 1
+  reception: 1
+  hs: 1
+  mnp: 
+  migration: 1
+
+two:
+  worked_on: 2020-08-19
+  ftth: 1
+  tab_new: 1
+  tab_change: 1
+  d_card_g: 1
+  d_card_r: 1
+  sls: 1
+  h4d: 1
+  skp: 1
+  reception: 1
+  hs: 1
+  mnp: 
+  migration: 1
