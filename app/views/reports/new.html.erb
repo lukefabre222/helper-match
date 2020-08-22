@@ -1,1 +1,57 @@
 <h1>日報作成画面</h1>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <p>氏名:<%= @staff.name %></p>
+    <%= form_for(@report, url: staff_reports_path, method: :post) do |f| %>
+      <%= f.label :reception %>
+      <%= f.number_field :reception, class:"form-cotrol" %>
+
+      <%= f.label :worked_on %>
+      <%= f.date_field :worked_on, class:"form-cotrol is-invalid"%>
+      
+      <%= f.label :shop_name %>
+      <%= f.text_field :shop_name, class:"form-cotrol"%>
+
+      <%= f.label :ftth %>
+      <%= f.number_field :ftth, class:"form-cotrol" %>
+
+      <%= f.label :tab_new %>
+      <%= f.number_field :tab_new, class:"form-cotrol" %>
+
+      <%= f.label :tab_change %>
+      <%= f.number_field :tab_change, class:"form-cotrol" %>
+
+      <%= f.label :d_card_g %>
+      <%= f.number_field :d_card_g, class:"form-cotrol" %>
+
+      <%= f.label :d_card_r %>
+      <%= f.number_field :d_card_r, class:"form-cotrol" %>
+
+      <%= f.label :sls %>
+      <%= f.number_field :sls, class:"form-cotrol" %>
+
+      <%= f.label :h4d %>
+      <%= f.number_field :h4d, class:"form-cotrol" %>
+
+      <%= f.label :skp %>
+      <%= f.number_field :skp, class:"form-cotrol" %>
+
+      <%= f.label :hs %>
+      <%= f.number_field :hs, class:"form-cotrol" %>
+
+      <%= f.label :mnp %>
+      <%= f.number_field :mnp, class:"form-cotrol" %>
+
+      <%= f.label :migration %>
+      <%= f.number_field :migration, class:"form-cotrol" %>
+
+      <%= f.hidden_field :staff_id, value: @staff.id %>
+
+      <%= f.button :type => "submit", class: "btn btn-parimary col-md-4 offset-md-4 mt-3" do %>
+        <i class="fas fa-edit"></i>
+        新規作成
+      <% end %>
+    <% end %>
+  </div>
+</div>

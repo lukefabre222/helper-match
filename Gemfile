@@ -9,6 +9,7 @@ gem 'bcrypt', '3.1.12'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
+gem 'rails-i18n', '~> 5.1' 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
