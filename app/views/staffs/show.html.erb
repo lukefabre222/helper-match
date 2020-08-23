@@ -1,9 +1,9 @@
-<h1>ユーザーぺーじ</h1>
+<h1>ユーザーページ</h1>
 <div>
   <%= @staff.name %>
 </div>
 
-<%= link_to "日報送信", new_staff_report_path(@staff), class:"btn btn-primary" %>
+<%= link_to "日報送信", new_staff_report_path(@staff), class:"btn btn-primary float-right my-3" %>
 
 <table class="table table-striped">
   <thead>
@@ -27,7 +27,7 @@
   <tbody>
     <% @reports.each do |report| %>
       <tr>
-        <td><%= report.worked_on %></td>
+        <td><%= report.worked_on.to_s(:date) %></td>
         <td><%= report.shop_name %></td>
         <td><%= report.reception %></td>
         <td><%= report.ftth %></td>

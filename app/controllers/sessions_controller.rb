@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     staff = Staff.find_by(email: params[:session][:email].downcase)
     if staff && staff.authenticate(params[:session][:password])
       log_in staff
-      flash.now[:success] = "ログインに成功しました"
+      flash[:success] = "ログインに成功しました"
       redirect_to staff
     else
       flash.now[:danger] = 'メールアドレスとパスワードの情報が一致しませんでした。'
@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
+    flash[:success]="ログアウトしました"
     redirect_to root_path
   end
 end
