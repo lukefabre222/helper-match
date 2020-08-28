@@ -1,11 +1,11 @@
 module SessionsHelper
   def log_in(staff)
-    session[:staff_id] = staff.id
+    session[:id] = staff.id
   end
 
   def current_staff
-    if session[:staff_id]
-      @current_staff ||= Staff.find_by(id: session[:staff_id])
+    if session[:id]
+      @current_staff ||= Staff.find_by(id: session[:id])
     end
   end
 
@@ -14,7 +14,7 @@ module SessionsHelper
   end
 
   def log_out
-    session.delete(:staff_id)
+    session.delete(:id)
     @current_staff = nil
   end
 

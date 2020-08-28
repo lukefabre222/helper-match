@@ -1,5 +1,10 @@
 class ReportsController < ApplicationController
 
+  def index
+    @staff = Staff.find(params[:staff_id])
+    @reports = Report.where(staff_id: params[:staff_id]).order('worked_on')
+  end
+
   def new
     @staff = Staff.find(params[:staff_id])
     @report = Report.new

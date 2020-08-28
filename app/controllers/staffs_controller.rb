@@ -1,9 +1,8 @@
 class StaffsController < ApplicationController
   before_action :logged_in_staff, only: [:edit, :update]
-  before_action :correct_staff,   only: [:edit, :update]
+  before_action :correct_staff,   only: [:show, :edit, :update]
   def show
     @staff = Staff.find(params[:id])
-    @reports = Report.where(staff_id: params[:id]).order('worked_on')
   end
 
   def index 

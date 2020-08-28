@@ -1,0 +1,47 @@
+<h1>日報ページ</h1>
+<div>
+  <%= @staff.name %>
+</div>
+
+<%= link_to "日報送信", new_staff_report_path(@staff), class:"btn btn-primary float-right my-3" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>店舗名</th>
+      <th>応対数</th>
+      <th >光</th>
+      <th>タブ新規</th>
+      <th>タブ機変</th>
+      <th>dカードGOLD</th>
+      <th>dカードRegular</th>
+      <th>スマートライフサービス</th>
+      <th>ひかりTV for docomo</th>
+      <th>スカパー</th>
+      <th>HS新規</th>
+      <th>ポートイン</th>
+      <th>マイグレ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.worked_on.to_s(:date) %></td>
+        <td><%= report.shop_name %></td>
+        <td><%= report.reception %></td>
+        <td><%= report.ftth %></td>
+        <td><%= report.tab_new %></td>
+        <td><%= report.tab_change %></td>
+        <td><%= report.d_card_g %></td>
+        <td><%= report.d_card_r %></td>
+        <td><%= report.sls %></td>
+        <td><%= report.h4d %></td>
+        <td><%= report.skp %></td>
+        <td><%= report.hs %></td>
+        <td><%= report.mnp %></td>
+        <td><%= report.migration %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
