@@ -1,0 +1,24 @@
+<% provide(:title, 'ユーザー作成') %>
+<h1>ユーザー作成</h1>
+
+<div class="row">
+  <div class="col-md-6 mt-5 center">
+    <div>
+      <%= image_tag 'staff.png', height: "200px" %>
+    </div>
+    <div>
+      <%= link_to "ヘルパー登録", new_staff_path, remote: true, class:"btn  btn-lg btn-primary" %>
+    </div>
+  </div>
+  <div class="col-md-6 mt-5 center">
+    <div>
+      <%= image_tag 'shop.png', height: "200px" %>
+    </div>
+    <div>
+      <%= link_to "店舗登録", "#", remote: true, class:"btn btn-lg btn-primary" %>    </div>
+  </div>
+</div>
+
+<!--モーダル-->
+
+<div id="new_staff" class="modal fade" tabindex="1000" role="dialog" aria-hidden="true"></div>
