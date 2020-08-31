@@ -12,6 +12,9 @@
 
 $gray-medium-light: #eaeaea;
 
+body{
+  font-family: 'Itim', 'Kosugi Maru';
+}
 /* universal */
 
 
@@ -124,4 +127,37 @@ input, textarea, select, .uneditable-input{
     margin: 0 0 30px 0;
   }
 }
+/* top-page*/
 
+#top-right{
+  position: relative;
+}
+
+.top-message{
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding:0;
+  z-index: 10;
+  p{
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+#top-right img{
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding:0;
+}

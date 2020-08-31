@@ -17,11 +17,11 @@
       <!-- ナビゲーションバー右 -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= link_to "ホーム", root_path, class:"nav-link" %>
+          <%= link_to "Home", root_path, class:"nav-link" %>
         </li>
         <% if logged_in? %>
           <li class="nav-item z">
-            <%= link_to "ログアウト", logout_path, method: :delete, class:"nav-link" %>
+            <%= link_to "Sign out", logout_path, method: :delete, class:"nav-link" %>
           </li>
           <!-- ドロップダウンメニュー -->
           <li class="nav-item dropdown">
@@ -32,16 +32,19 @@
                 data-toggle="dropdown" 
                 aria-haspopup="true" 
                 aria-expanded="false">
-              メニュー
+              Menu
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <%= link_to "マイページ", current_staff, class:"dropdown-item" %>
-                <a class="dropdown-item" href="#">ドロップダウンメニュー</a>
+                <%= link_to "My page", current_staff, class:"dropdown-item" %>
+                <a class="dropdown-item" href="#">Drop down menu</a>
             </div>
           </li>
         <% else %>
           <li class="nav-item z">
-            <%= link_to "ログイン", login_path, class:"nav-link" %>
+            <%= link_to "Sign in", login_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item z">
+            <%= link_to "Sign up", new_acount_path, class:"nav-link" %>
           </li>
         <% end %>
       </ul>
