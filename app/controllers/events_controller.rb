@@ -1,15 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_staff, only: [:show, :edit, :update, :destroy]
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.where(staff_id: params[:staff_id])
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @event = Event.find(params[:staff_id])
   end
 
   # GET /events/new
@@ -66,7 +67,11 @@ class EventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:id])
+      @event = Event.find(params[:staff_id])
+    end
+
+    def set_staff
+      @staff = Staff.find(params[:staff_id])
     end
 
     # Only allow a list of trusted parameters through.
