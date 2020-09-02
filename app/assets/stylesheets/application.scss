@@ -1,3 +1,6 @@
+/*
+*= require fullcalendar
+*/
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 @import 'font-awesome-sprockets';
@@ -160,4 +163,11 @@ input, textarea, select, .uneditable-input{
   transform: translate(-50%,-50%);
   margin:0;
   padding:0;
+}
+
+/* calendar */
+
+.fc-toolbar h2{
+  color: black;
+  font-size: 2.1rem;
 }

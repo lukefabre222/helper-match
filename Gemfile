@@ -12,6 +12,8 @@ gem 'font-awesome-sass'
 gem 'rails-i18n', '~> 5.1' 
 gem 'faker', '1.7.3'
 gem 'faker-japanese'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

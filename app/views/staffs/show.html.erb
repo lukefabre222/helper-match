@@ -1,8 +1,10 @@
-<h1>ユーザーページ</h1>
-<div>
-  <%= @staff.name %>
-</div>
+<h1><%= @staff.name %></h1>
 
 <div>
   <%= link_to "日報ページへ", staff_reports_path(@staff), class:"btn btn-primary" %>
 </div>
+<div>
+  <%= link_to "新しい予定作成", new_staff_event_path(@staff), class:"btn btn-primary" %>
+</div>
+
+<div id="calendar"></div>

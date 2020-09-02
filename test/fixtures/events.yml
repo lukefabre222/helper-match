@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop_name: MyString
+  work_type: MyString
+  start_date: 2020-09-02 08:56:27
+  end_date: 2020-09-02 08:56:27
+
+two:
+  shop_name: MyString
+  work_type: MyString
+  start_date: 2020-09-02 08:56:27
+  end_date: 2020-09-02 08:56:27

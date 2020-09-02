@@ -3,6 +3,7 @@ class StaffsController < ApplicationController
   before_action :correct_staff,   only: [:show, :edit, :update]
   def show
     @staff = Staff.find(params[:id])
+    @events = Event.where(staff_id: params[:id])
   end
 
   def index 
