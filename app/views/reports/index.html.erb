@@ -25,23 +25,64 @@
     </tr>
   </thead>
   <tbody>
+    <% @sum_reception = 0  %>
+    <% @sum_ftth = 0  %>
+    <% @sum_tab_new = 0  %>
+    <% @sum_tab_change = 0  %>
+    <% @sum_d_card_g = 0  %>
+    <% @sum_d_card_r = 0  %>
+    <% @sum_sls = 0  %>
+    <% @sum_h4d = 0  %>
+    <% @sum_skp = 0  %>
+    <% @sum_hs = 0  %>
+    <% @sum_mnp = 0  %>
+    <% @sum_migration = 0  %>
     <% @reports.each do |report| %>
       <tr>
         <td><%= report.worked_on.to_s(:date) %></td>
         <td><%= report.shop_name %></td>
         <td><%= report.reception %></td>
+        <% @sum_reception += report.reception %>
         <td><%= report.ftth %></td>
+        <% @sum_ftth += report.ftth %>
         <td><%= report.tab_new %></td>
+        <% @sum_tab_new += report.tab_new %>
         <td><%= report.tab_change %></td>
+        <% @sum_tab_change += report.tab_change %>
         <td><%= report.d_card_g %></td>
+        <% @sum_d_card_g += report.d_card_g %>
         <td><%= report.d_card_r %></td>
+        <% @sum_d_card_r += report.d_card_r %>
         <td><%= report.sls %></td>
+        <% @sum_sls += report.sls %>
         <td><%= report.h4d %></td>
+        <% @sum_h4d += report.h4d %>
         <td><%= report.skp %></td>
+        <% @sum_skp += report.skp %>
         <td><%= report.hs %></td>
+        <% @sum_hs += report.hs %>
         <td><%= report.mnp %></td>
+        <% @sum_mnp += report.mnp %>
         <td><%= report.migration %></td>
+        <% @sum_migration += report.migration %>
       </tr>
     <% end %>
   </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">合計</td>
+      <td><%= @sum_reception %></td>
+      <td><%= @sum_ftth %></td>
+      <td><%= @sum_tab_new %></td>
+      <td><%= @sum_tab_change %></td>
+      <td><%= @sum_d_card_g %></td>
+      <td><%= @sum_d_card_r %></td>
+      <td><%= @sum_sls %></td>
+      <td><%= @sum_h4d %></td>
+      <td><%= @sum_skp %></td>
+      <td><%= @sum_hs %></td>
+      <td><%= @sum_mnp %></td>
+      <td><%= @sum_migration %></td>
+    </tr>
+  </tfoot>
 </table>
