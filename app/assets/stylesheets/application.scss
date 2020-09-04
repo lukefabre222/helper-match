@@ -131,8 +131,45 @@ input, textarea, select, .uneditable-input{
   }
 }
 /* top-page*/
+#top-left{
+  height: 250px;
+}
+.top-img{
+  position: absolute;
+  width: 95%;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding:0;
+}
 
-#top-right{
+.top-message{
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding:0;
+  z-index: 10;
+  h1 {
+    width: 200px;
+    margin: 0;
+  }
+  p{
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width:1024px) {
+#top-left{
   position: relative;
 }
 
@@ -153,7 +190,7 @@ input, textarea, select, .uneditable-input{
   }
 }
 
-#top-right img{
+.top-img{
   position: absolute;
   z-index: -1;
   top: 50%;
@@ -164,10 +201,43 @@ input, textarea, select, .uneditable-input{
   margin:0;
   padding:0;
 }
-
+.top-right{
+  height: 50%;
+}
+}
 /* calendar */
 
 .fc-toolbar h2{
   color: black;
   font-size: 2.1rem;
 }
+
+/* fade in*/
+.fadein {
+  opacity: 0;
+  transform : translate(0, 50px);
+  transition : all 1500ms;
+}
+.fadein.scrollin{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.fadeinleft {
+  opacity: 0;
+  transform : translate(50px, 0);
+  transition : all 1500ms;
+}
+.fadeinleft.scrollin{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.fadeinright {
+  opacity: 0;
+  transform : translate(-50px, 0);
+  transition : all 1500ms;
+}
+.fadeinright.scrollin{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+

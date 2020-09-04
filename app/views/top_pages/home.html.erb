@@ -1,15 +1,15 @@
 <% provide(:title, "ホーム") %>
 <div class="row" style="height: 100%;">
-  <div class="col-md-6 my-auto" id="top-right">
-    <%= image_tag 'squere.png', width: "90%" %>
+  <div class="col-md-6 my-auto" id="top-left">
+    <%= image_tag 'squere.png',class:"top-img" %>
     <div class="top-message">
       <h1 class="my-auto">Ad Match</h1>
       <p>"~good work~"</p>
     </div>
   </div>
   <div class="col-md-6">
-  <div class="row" style="height: 50%;">
-    <div class="col-md-12 center my-auto">
+  <div class="row top-right">
+    <div class="col-md-12 center my-auto fadein">
       <div>
         <%= image_tag 'report.png', height: "150px" %>
       </div>
@@ -18,8 +18,8 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height:50%;"> 
-    <div class="col-md-6 center my-auto">
+  <div class="row top-right"> 
+    <div class="col-md-6 center my-auto fadeinleft">
       <div>
         <%= image_tag 'variation.png', height: "150px" %>
       </div>
@@ -27,7 +27,7 @@
         <h4>Rich Variation</h4>
       </div>
     </div>
-    <div class="col-md-6 center my-auto">
+    <div class="col-md-6 center my-auto fadeinright">
       <div>
         <%= image_tag 'match.png', height: "150px" %>
       </div>
