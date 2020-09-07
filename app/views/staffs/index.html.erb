@@ -13,7 +13,9 @@
         <div class="card-body">
           <h5 class="card-title"><%= f.name %></h5>
           <% @report_column.each do |c|  %>
-            <p class="card-text" style = "font-size:10px;"><%= Report.human_attribute_name(c) %>:<%= average_colmun(f.id, c) %></p>
+            <div class="report-list">
+              <p class="card-text" style = "font-size:10px;"><%= Report.human_attribute_name(c) %>:<%= average_colmun(f.id, c) %></p>
+            </div>
           <% end  %>
         </div>
       </div>
