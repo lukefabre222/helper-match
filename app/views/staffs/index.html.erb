@@ -1,7 +1,5 @@
 <% provide(:title, 'スタッフ一覧') %>
 <h1>スタッフ一覧</h1>
-
-
 <div class="row">
 <% @staffs.each do |f| %>
   <div class="col-md-6 my-3">
@@ -10,14 +8,14 @@
         <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image</text></svg>
       </div>
       <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><%= f.name %></h5>
-          <% @report_column.each do |c|  %>
-            <div class="report-list">
-              <p class="card-text" style = "font-size:10px;"><%= Report.human_attribute_name(c) %>:<%= average_colmun(f.id, c) %></p>
-            </div>
-          <% end  %>
-        </div>
+          <div class="card-body pt-2 pb-0" height="50%">
+            <h5 class="card-title"><%= f.name %></h5>
+              <div class="report-list">
+              <% @report_column.each do |c| %>
+                <p class="card-text mx-1" style = "font-size:10px;"><%= Report.human_attribute_name(c) %>:<%= average_colmun(f.id, c) %></p>
+              <% end  %>
+              </div>
+          </div>
       </div>
     </div>
   </div>
