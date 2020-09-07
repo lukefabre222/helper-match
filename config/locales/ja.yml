@@ -29,17 +29,17 @@ ja:
         designated_work_end_time: 指定勤務終了時間
       report:
         worked_on: 勤務日
-        ftth: 光成約数
-        tab_new: タブ新規成約数
-        tab_change: タブ機変成約数
+        ftth: 光
+        tab_new: タブ新規
+        tab_change: タブ機変
         d_card_g: dカードGOLD
         d_card_r: dカードRegular
-        sls: スマートライフサービス
-        h4d: ひかりTV for docomo
+        sls: SLS
+        h4d: H4D
         skp: スカパー
         reception: 応対数
-        hs: ハンドセット新規
-        mnp: ポートイン
+        hs: HS新規
+        mnp: MNP
         migration: マイグレ
         shop_name: 店舗名
     errors:
