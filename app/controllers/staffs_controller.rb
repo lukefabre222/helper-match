@@ -7,7 +7,9 @@ class StaffsController < ApplicationController
   end
 
   def index 
-    @staff = Staff.find(params[:id])
+    @staffs = Staff.all
+    report_column = Report.column_names
+    @report_column = report_column[2..13]
   end
 
   def new 

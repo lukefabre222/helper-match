@@ -1,4 +1,5 @@
 ja:
+  hello: "Hello world"
   views:
     pagination:
       first: "&laquo; 最初"
@@ -15,11 +16,8 @@ ja:
         title: タイトル
         content: 内容
       staff:
-        title: タイトル
         name: 名前
         email: メールアドレス
-        department: 所属
-        current_password: 現在のパスワード
         password: パスワード
         password_confirmation: パスワード(確認)
         basic_time: 基準時間
@@ -44,10 +42,6 @@ ja:
         mnp: ポートイン
         migration: マイグレ
         shop_name: 店舗名
-      office:
-        office_name: 拠点名
-        office_number: 拠点番号
-        attendance_status: 勤怠種類
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
