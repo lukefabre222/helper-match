@@ -17,11 +17,17 @@ class StaffsController < ApplicationController
   end
 
   def edit 
-
+    @staff = Staff.find(params[:id])
   end
 
   def update 
-
+    @staff = Staff.find(params[:id])
+    if @staff.update_attributes(staff_params)
+      flash[:success] = "情報を更新しました"
+      redirect_to staffs_path
+    else
+      render 'edit'
+    end
   end
 
   def create 
@@ -36,7 +42,10 @@ class StaffsController < ApplicationController
   end
 
   def destroy
-
+    @staff = Staff.find(params[:id])
+    @staff.destroy
+    flash[:success]="ユーザーを削除しました"
+    redirect_to staffs_path
   end
 
   private
