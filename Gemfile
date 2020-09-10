@@ -14,6 +14,7 @@ gem 'faker', '1.7.3'
 gem 'faker-japanese'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'chart-js-rails', '~> 0.1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
