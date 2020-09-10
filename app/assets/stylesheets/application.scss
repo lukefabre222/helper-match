@@ -111,7 +111,16 @@ td{
   text-align: center;
   font-size: 10px;
 }
-
+.report-list{
+  th{
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+  td{
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+}
 /* form */
 
 input, textarea, select, .uneditable-input{
