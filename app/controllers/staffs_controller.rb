@@ -4,6 +4,8 @@ class StaffsController < ApplicationController
   def show
     @staff = Staff.find(params[:id])
     @events = Event.where(staff_id: @staff.id)
+    report_column = Report.column_names
+    @report_column = report_column[2..13]
   end
 
   def index 
