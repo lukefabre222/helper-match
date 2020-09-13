@@ -8,18 +8,43 @@
 <div class="row">
     <div class="col-md-12 my-3">
       <div class="row no-gutters">
-        <div class="col-md-4">
-          <svg class="bd-placeholder-img" width="100%" height="170" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">Image</text></svg>
+        <div class="col-md-4 center">
+          <%= image_tag 'sample_avator.png', height: "170px", class:"avator_image" %>
         </div>
         <div class="col-md-4">
-          <div class="card-body pt-2 pb-0">
+          <div class="card-body pt-2 pb-0 px-1">
             <div class="row">
               <div class="col-md-12">
                 <h5 class="card-title center"><%= @staff.name %></h5>
                 <div class="report-list">
-                  <% @report_column.each do |c| %>
-                    <p class="card-text mx-1" style = "font-size:10px;"><%= Report.human_attribute_name(c) %>:<%= average_colmun(@staff.id, c) %></p>
-                  <% end %>
+                  <table class="table my-0">
+                    <tbody>
+                      <tr class="table-primary">
+                        <td><%= Report.human_attribute_name(@report_column[0]) %></td>
+                        <td><%= Report.human_attribute_name(@report_column[1]) %></td>
+                        <td><%= Report.human_attribute_name(@report_column[3]) %></td>
+                        <td><%= Report.human_attribute_name(@report_column[5]) %></td>
+                      </tr>
+                      <tr>
+                        <td><%= average_colmun(@staff.id, :ftth)%></td>
+                        <td><%= average_colmun(@staff.id, :tab_new)%></td>
+                        <td><%= average_colmun(@staff.id, :d_card_g)%></td>
+                        <td><%= average_colmun(@staff.id, :sls)%></td>
+                      </tr>
+                      <tr class="table-primary">
+                        <td><%= Report.human_attribute_name(@report_column[6]) %></td>
+                        <td><%= Report.human_attribute_name(@report_column[10]) %></td>
+                        <td><%= Report.human_attribute_name(@report_column[11]) %></td>
+                        <td>入店回数</td>
+                      </tr>
+                      <tr>
+                        <td><%= average_colmun(@staff.id, :h4d)%></td>
+                        <td><%= average_colmun(@staff.id, :mnp)%></td>
+                        <td><%= average_colmun(@staff.id, :migration)%></td>
+                        <td><%= total_work_days(@staff.id) %></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>  
             </div>
