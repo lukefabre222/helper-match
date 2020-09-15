@@ -5,6 +5,12 @@ class ReportsController < ApplicationController
     @reports = Report.where(staff_id: params[:staff_id]).order('worked_on')
   end
 
+  def import
+    # fileはtmpに自動で一時保存される
+    Report.import(params[:file])
+    redirect_to staffs_path
+  end
+
   def new
     @staff = Staff.find(params[:staff_id])
     @report = Report.new

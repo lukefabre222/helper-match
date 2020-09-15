@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get    '/login',  to: 'sessions#new'
   post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  post '/reports/import', to: 'reports#import', as: 'reports_import'
   resources :staffs do
     resources :reports
     resources :events

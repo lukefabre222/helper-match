@@ -2,7 +2,10 @@
 <div>
   <%= @staff.name %>
 </div>
-
+<%= form_tag reports_import_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "インポート" %>
+<% end %>
 <%= link_to "日報送信", new_staff_report_path(@staff), class:"btn btn-primary float-right my-3" %>
 
 <table class="table table-striped">

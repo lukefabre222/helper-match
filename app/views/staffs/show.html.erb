@@ -15,7 +15,8 @@
           <div class="card-body pt-2 pb-0 px-1">
             <div class="row">
               <div class="col-md-12">
-                <h5 class="card-title center"><%= @staff.name %></h5>
+              <h5>1日あたりの生産性(直近３ヶ月)</h5>
+                <p class="card-title center" id="staff_name" style="display:none;" ><%= @staff.name %></p>
                 <div class="report-list">
                   <table class="table my-0">
                     <tbody>
@@ -61,13 +62,14 @@
         </div>
         <div class="col-md-4">
         <% staff_value = [] %>
-        <% staff_value[0] = Report.where(staff_id: @staff.id).where(worked_on: (Date.today.beginning_of_month)..(Date.today.end_of_month)).average(:ftth).round(1) %>
-        <% staff_value[1] = Report.where(staff_id: @staff.id).where(worked_on: (Date.today.beginning_of_month)..(Date.today.end_of_month)).average(:tab_new).round(1) %>
-        <% staff_value[2] = Report.where(staff_id: @staff.id).where(worked_on: (Date.today.beginning_of_month)..(Date.today.end_of_month)).average(:d_card_g).round(1) %>
-        <% staff_value[3] = Report.where(staff_id: @staff.id).where(worked_on: (Date.today.beginning_of_month)..(Date.today.end_of_month)).average(:sls).round(1) %>
-        <% staff_value[4] = Report.where(staff_id: @staff.id).where(worked_on: (Date.today.beginning_of_month)..(Date.today.end_of_month)).average(:mnp).round(1) %>
-        <% staff_value[5] = Report.where(staff_id: @staff.id).where(worked_on: (Date.today.beginning_of_month)..(Date.today.end_of_month)).average(:migration).round(1) %>
+        <% staff_value[0] = average_colmun(@staff.id, :ftth) %>
+        <% staff_value[1] = average_colmun(@staff.id, :tab_new) %>
+        <% staff_value[2] = average_colmun(@staff.id, :d_card_g) %>
+        <% staff_value[3] = average_colmun(@staff.id, :sls) %>
+        <% staff_value[4] = average_colmun(@staff.id, :mnp) %>
+        <% staff_value[5] = average_colmun(@staff.id, :migration) %>
         <% @staff_value = staff_value %>
+        <% @staff_name = @staff.name %>
           <canvas id="myChart"></canvas>
         </div>
       </div>
@@ -75,17 +77,18 @@
 </div>
 <script>
 var ctx = document.getElementById("myChart");
+var staff_name = document.getElementById("staff_name");
 var myChart = new Chart(ctx, {
   type: 'radar',
   data: {
     labels: ["光","タブ新規","dカードGOLD","SLS","MNP","LTE移行"],
     datasets: [{
-      label: 'A_kun',
+      label: staff_name.textContent,
       backgroundColor: "rgba(0,0,80,0.4)",
       borderColor: "rgba(0,0,80,1)",
       data: <%= @staff_value %>
     }, {
-      label: 'B_kun',
+      label: '平均',
       backgroundColor: "rgba(0,255,0,0.4)",
       borderColor: "rgba(0,255,0,1)",
       data: [1, 1, 1, 1, 1, 1]

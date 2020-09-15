@@ -1,4 +1,4 @@
-4.times do |n|
+13.times do |n|
   name = Faker::Japanese::Name.name
   email = "email#{n+1}@sample.com"
   password = "password"
@@ -8,26 +8,26 @@
                 password_confirmation: password)
 end
 
-4.times do |s|
+13.times do |s|
 staff_id = "#{s+1}"
-  20.times do |f|
+  1.times do |f|
     from = Date.current.beginning_of_month
     to = Date.current.end_of_month
     date = Random.rand(from..to)
     Report.create(
       worked_on: date,
       shop_name: "東戸塚",
-      ftth: Random.rand(5),
-      tab_new: Random.rand(5),
-      tab_change: Random.rand(5),
-      d_card_g: Random.rand(5),
-      d_card_r: Random.rand(5),
-      sls: Random.rand(5),
-      h4d: Random.rand(5),
-      skp: Random.rand(5),
-      hs: Random.rand(5),
-      mnp: Random.rand(5),
-      migration: Random.rand(5),
+      ftth: Random.rand(3),
+      tab_new: Random.rand(2),
+      tab_change: Random.rand(3),
+      d_card_g: Random.rand(3),
+      d_card_r: Random.rand(3),
+      sls: Random.rand(3),
+      h4d: Random.rand(1),
+      skp: Random.rand(1),
+      hs: Random.rand(2),
+      mnp: Random.rand(1),
+      migration: Random.rand(3),
       reception: "5",
       staff_id: staff_id  
     )
