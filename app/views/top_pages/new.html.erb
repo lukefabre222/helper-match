@@ -15,10 +15,11 @@
       <%= image_tag 'shop.png', height: "200px" %>
     </div>
     <div>
-      <%= link_to "店舗登録", "#", remote: true, class:"btn btn-lg btn-primary" %>    </div>
+      <%= link_to "店舗登録", new_shop_path, remote: true, class:"btn btn-lg btn-primary" %>    </div>
   </div>
 </div>
 
 <!--モーダル-->
 
 <div id="new_staff" class="modal fade" tabindex="1000" role="dialog" aria-hidden="true"></div>
+<div id="new_shop" class="modal fade" tabindex="1000" role="dialog" aria-hidden="true"></div>

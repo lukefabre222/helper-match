@@ -1,6 +1,8 @@
 class StaffsController < ApplicationController
-  before_action :logged_in_staff, only: [:edit, :update, :index]
+  before_action :logged_in_staff, only: [:edit, :update]
   before_action :correct_staff,   only: [:show, :edit, :update]
+  before_action :store_only, only: [:index]
+
   def show
     @staff = Staff.find(params[:id])
     @events = Event.where(staff_id: @staff.id)
@@ -9,12 +11,16 @@ class StaffsController < ApplicationController
   end
 
   def index 
-    @staffs = Staff.all
+    @staffs = Staff.where(status: 1)
     report_column = Report.column_names
     @report_column = report_column[2..13]
   end
 
   def new 
+    @staff = Staff.new
+  end
+
+  def new_shop
     @staff = Staff.new
   end
 
@@ -51,9 +57,13 @@ class StaffsController < ApplicationController
   end
 
   private
+  def store_only
+    redirect_to(root_url) unless current_staff.status == 2
+  end
+
 
   def staff_params
-    params.require(:staff).permit(:name,:email,:password,:password_confirmation)
+    params.require(:staff).permit(:name,:email,:password,:password_confirmation, :status)
   end
 
   def logged_in_staff
@@ -66,6 +76,6 @@ class StaffsController < ApplicationController
 
   def correct_staff
     @staff = Staff.find(params[:id])
-    redirect_to(root_url) unless @staff == current_staff
+    redirect_to(root_url) unless @staff == current_staff || current_staff.status == 2
   end
 end

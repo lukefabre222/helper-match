@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'top_pages#home'
   get '/new', to: 'top_pages#new', as: 'new_acount'
+  get 'staffs/new_shop', to: 'staffs#new_shop', as: 'new_shop'
   get '/signup', to: 'staffs#new'
   get    '/login',  to: 'sessions#new'
   post   '/login',  to: 'sessions#create'

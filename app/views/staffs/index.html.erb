@@ -23,10 +23,10 @@
                         <td><%= Report.human_attribute_name(@report_column[5]) %></td>
                       </tr>
                       <tr>
-                        <td><%= average_colmun(f.id, :ftth)%></td>
-                        <td><%= average_colmun(f.id, :tab_new)%></td>
-                        <td><%= average_colmun(f.id, :d_card_g)%></td>
-                        <td><%= average_colmun(f.id, :sls)%></td>
+                        <td><%= average_column(f.id, :ftth) %></td>
+                        <td><%= average_column(f.id, :tab_new) %></td>
+                        <td><%= average_column(f.id, :d_card_g) %></td>
+                        <td><%= average_column(f.id, :sls) %></td>
                       </tr>
                       <tr class="table-primary">
                         <td><%= Report.human_attribute_name(@report_column[6]) %></td>
@@ -35,9 +35,9 @@
                         <td>入店回数</td>
                       </tr>
                       <tr>
-                        <td><%= average_colmun(f.id, :h4d)%></td>
-                        <td><%= average_colmun(f.id, :mnp)%></td>
-                        <td><%= average_colmun(f.id, :migration)%></td>
+                        <td><%= average_column(f.id, :h4d) %></td>
+                        <td><%= average_column(f.id, :mnp) %></td>
+                        <td><%= average_column(f.id, :migration) %></td>
                         <td><%= total_work_days(f.id) %></td>
                       </tr>
                     </tbody>

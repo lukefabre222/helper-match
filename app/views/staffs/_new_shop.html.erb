@@ -4,7 +4,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h1>スタッフ登録</h1>
+      <h1>店舗登録</h1>
 
       <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -22,7 +22,7 @@
 
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, class:"form-cotrol" %>
-            <%= f.hidden_field :status, :value => 1 %>
+            <%= f.hidden_field :status, :value => 2 %>
 
             <%= f.button :type => "submit", class: "btn btn-primary col-md-4 offset-md-4 mt-3" do %>
               <i class="fas fa-edit"></i>

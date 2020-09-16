@@ -1,10 +1,12 @@
 <h1><%= @staff.name %></h1>
 
 <div>
-  <%= link_to "日報ページへ", staff_reports_path(@staff), class:"btn btn-primary" %>
+  <% if current_staff.status == 1 %>
+    <%= link_to "日報ページへ", staff_reports_path(@staff), class:"btn btn-primary" %>
+  <% end %>
   <%= link_to "予定表へ", staff_events_path(@staff), class:"btn btn-primary" %>
 </div>
-  
+<% if @staff.status == 1 %>
 <div class="row">
     <div class="col-md-12 my-3">
       <div class="row no-gutters">
@@ -27,10 +29,10 @@
                         <td><%= Report.human_attribute_name(@report_column[5]) %></td>
                       </tr>
                       <tr>
-                        <td><%= average_colmun(@staff.id, :ftth)%></td>
-                        <td><%= average_colmun(@staff.id, :tab_new)%></td>
-                        <td><%= average_colmun(@staff.id, :d_card_g)%></td>
-                        <td><%= average_colmun(@staff.id, :sls)%></td>
+                        <td><%= average_column(@staff.id, :ftth)%></td>
+                        <td><%= average_column(@staff.id, :tab_new)%></td>
+                        <td><%= average_column(@staff.id, :d_card_g)%></td>
+                        <td><%= average_column(@staff.id, :sls)%></td>
                       </tr>
                       <tr class="table-primary">
                         <td><%= Report.human_attribute_name(@report_column[6]) %></td>
@@ -39,9 +41,9 @@
                         <td>入店回数</td>
                       </tr>
                       <tr>
-                        <td><%= average_colmun(@staff.id, :h4d)%></td>
-                        <td><%= average_colmun(@staff.id, :mnp)%></td>
-                        <td><%= average_colmun(@staff.id, :migration)%></td>
+                        <td><%= average_column(@staff.id, :h4d)%></td>
+                        <td><%= average_column(@staff.id, :mnp)%></td>
+                        <td><%= average_column(@staff.id, :migration)%></td>
                         <td><%= total_work_days(@staff.id) %></td>
                       </tr>
                     </tbody>
@@ -63,12 +65,12 @@
         <div class="col-md-4">
           <% #スタッフの平均値算出  %>
           <% staff_value = [] %>
-          <% staff_value[0] = average_colmun(@staff.id, :ftth) %>
-          <% staff_value[1] = average_colmun(@staff.id, :tab_new) %>
-          <% staff_value[2] = average_colmun(@staff.id, :d_card_g) %>
-          <% staff_value[3] = average_colmun(@staff.id, :sls) %>
-          <% staff_value[4] = average_colmun(@staff.id, :mnp) %>
-          <% staff_value[5] = average_colmun(@staff.id, :migration) %>
+          <% staff_value[0] = average_column(@staff.id, :ftth) %>
+          <% staff_value[1] = average_column(@staff.id, :tab_new) %>
+          <% staff_value[2] = average_column(@staff.id, :d_card_g) %>
+          <% staff_value[3] = average_column(@staff.id, :sls) %>
+          <% staff_value[4] = average_column(@staff.id, :mnp) %>
+          <% staff_value[5] = average_column(@staff.id, :migration) %>
           <% @staff_value = staff_value %>
           <% @staff_name = @staff.name %>
           <% #全体の平均値算出  %>
@@ -85,6 +87,7 @@
       </div>
     </div>
 </div>
+<% end %>
 <script>
 var ctx = document.getElementById("myChart");
 var staff_name = document.getElementById("staff_name");

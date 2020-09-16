@@ -4,6 +4,18 @@
   password = "password"
   Staff.create!(name: name,
                 email: email,
+                status: 1,
+                password: password,
+                password_confirmation: password)
+end
+
+1.times do |n|
+  name = "DS東戸塚店"
+  email = "email_shop@sample.com"
+  password = "password"
+  Staff.create!(name: name,
+                email: email,
+                status: 2,
                 password: password,
                 password_confirmation: password)
 end
