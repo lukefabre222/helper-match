@@ -221,6 +221,19 @@ input, textarea, select, .uneditable-input{
   font-size: 2.1rem;
 }
 
+.fc-sun{
+  color: red;
+}
+
+.fc-sat{
+  color: blue;
+}
+
+.fc-row table{
+  border-left: 0 hidden transparent !important;
+    border-right: 0 hidden transparent !important;
+    border-bottom: transparent !important;
+}
 /* fade in*/
 .fadein {
   opacity: 0;
