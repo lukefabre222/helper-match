@@ -10,14 +10,14 @@
 <div class="row">
     <div class="col-md-12 my-3">
       <div class="row no-gutters">
-        <div class="col-md-4 center">
+        <div class="col-md-3 center">
           <%= image_tag 'sample_avator.png', height: "170px", class:"avator_image" %>
         </div>
         <div class="col-md-4">
           <div class="card-body pt-2 pb-0 px-1">
             <div class="row">
               <div class="col-md-12">
-              <h5>1日あたりの生産性(直近３ヶ月)</h5>
+              <h5 class="center">1日あたりの生産性(直近３ヶ月)</h5>
                 <p class="card-title center" id="staff_name" style="display:none;" ><%= @staff.name %></p>
                 <div class="report-list">
                   <table class="table table-bordered my-0">
@@ -29,8 +29,8 @@
                         <td><%= Report.human_attribute_name(@report_column[5]) %></td>
                       </tr>
                       <tr>
-                        <td><%= average_column(@staff.id, :ftth)%></td>
-                        <td><%= average_column(@staff.id, :tab_new)%></td>
+                        <td><%= average_column(@staff.id, :ftth)%>(<%= average_value(:ftth) %>)</td>
+                        <td><%= average_column(@staff.id, :tab_new)%>(<%= average_value(:tab_new) %>)</td>
                         <td><%= average_column(@staff.id, :d_card_g)%></td>
                         <td><%= average_column(@staff.id, :sls)%></td>
                       </tr>
@@ -51,18 +51,9 @@
                 </div>
               </div>  
             </div>
-            <div class="row">
-              <div class="col-md-12 center">
-                <% if @staff.id == current_staff.id  %>
-                  <%= link_to "編集", edit_staff_path(@staff.id), remote: true, class:"btn btn-sm btn-primary" %>
-                  <%= link_to "削除", staff_path(@staff.id), method: :delete,
-                            data: { confirm: "削除してよろしいですか？"},class: "btn btn-sm btn-primary" %>
-                <% end %>
-              </div>
-            </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <% #スタッフの平均値算出  %>
           <% staff_value = [] %>
           <% staff_value[0] = average_column(@staff.id, :ftth) %>
@@ -93,9 +84,9 @@
 var ctx = document.getElementById("myChart");
 var staff_name = document.getElementById("staff_name");
 var myChart = new Chart(ctx, {
-  type: 'radar',
+  type: 'bar',
   data: {
-    labels: ["光","タブ新規","dカードGOLD","SLS","MNP","LTE移行"],
+    labels: ["光","タブ新規","GOLD","SLS","MNP","LTE移行"],
     datasets: [{
       label: staff_name.textContent,
       backgroundColor: "rgba(0,0,80,0.4)",
@@ -107,6 +98,7 @@ var myChart = new Chart(ctx, {
       borderColor: "rgba(0,255,0,1)",
       data: <%= @average_value %>
     }]
-  }
+  },
+
 });
 </script>
