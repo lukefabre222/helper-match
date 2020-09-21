@@ -1,5 +1,6 @@
 <h1>New Event</h1>
 
 <%= render 'form', event: @event %>
-
-<%= link_to '戻る', staff_path(@staff), class:"btn btn-primary" %>
+<div class="center mt-3">
+<%= link_to '戻る', staff_events_path(@staff.id), class:"btn btn-primary" %>
+</div>

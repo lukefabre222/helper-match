@@ -10,17 +10,18 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:staff_id])
   end
 
   # GET /events/new
   def new
     @staff = Staff.find(params[:staff_id])
     @event = Event.new
+    @shops = Staff.where(status: 2)
   end
 
   # GET /events/1/edit
   def edit
+    @shops = Staff.where(status: 2)
   end
 
   # POST /events
@@ -31,7 +32,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @staff, notice: 'Event was successfully created.' }
+        format.html { redirect_to staff_events_path(@event.staff_id), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -45,7 +46,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to staff_event_path(@event.staff_id), notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -59,7 +60,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to staff_events_path(@event.staff_id), notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,7 +68,7 @@ class EventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:staff_id])
+      @event = Event.find(params[:id])
     end
 
     def set_staff
