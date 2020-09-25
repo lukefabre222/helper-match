@@ -4,7 +4,10 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    @staff = Staff.find(params[:staff_id])
     @events = Event.where(staff_id: params[:staff_id])
+    @event = Event.new
+    @shops = Staff.where(status: 2)
   end
 
   # GET /events/1
@@ -32,7 +35,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to staff_events_path(@event.staff_id), notice: 'Event was successfully created.' }
+        flash[:success] = "スケジュールを作成しました"
+        format.html { redirect_to staff_events_path(@event.staff_id)}
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -46,7 +50,8 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to staff_event_path(@event.staff_id), notice: 'Event was successfully updated.' }
+        flash[:success] = "スケジュールを更新しました"
+        format.html { redirect_to staff_events_path(@event.staff_id)}
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -77,6 +82,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:shop_name, :work_type, :start_date, :end_date, :staff_id)
+      params.require(:event).permit(:shop_name, :work_type, :status, :start_date, :end_date, :staff_id)
     end
 end

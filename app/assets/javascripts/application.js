@@ -64,7 +64,11 @@ $(function () {
             eventRender: function(event, element) {
                 element.css("font-size", "0.8em");
                 element.css("padding", "5px");
-            }
+                element.find(".fc-title").append(event.status);
+            },
+            dayClick : function ( date , jsEvent , view ) {
+              $('#inputScheduleForm').modal('show');
+              },
         });
     }
 });

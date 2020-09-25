@@ -20,6 +20,6 @@
   <%= @event.end_date %>
 </p>
 
-<%= link_to 'Edit', edit_staff_event_path(@event) %> |
+<%= link_to 'Edit', edit_staff_event_path(@event.staff_id) %> |
 <%= link_to 'Back', staff_events_path %>
-<%= link_to 'destroy', staff_event_path(@event.id), method: :delete %>
+<%= link_to 'destroy', staff_event_path(@event.staff_id), method: :delete %>

@@ -1,0 +1,21 @@
+<% provide(:url, staff_events_path) %>
+<% provide(:method, :post) %>
+
+<div id="inputScheduleForm" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-center">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= render 'form', event: @event %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="center mt-3">
+<%= link_to '戻る', staff_events_path(@staff.id), class:"btn btn-primary" %>
+</div>
