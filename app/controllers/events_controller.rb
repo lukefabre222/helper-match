@@ -65,7 +65,8 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to staff_events_path(@event.staff_id), notice: 'Event was successfully destroyed.' }
+      flash[:success] = "スケジュールを削除しました"
+      format.html { redirect_to staff_events_path(@event.staff_id)}
       format.json { head :no_content }
     end
   end

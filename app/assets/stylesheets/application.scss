@@ -180,6 +180,7 @@ input, textarea, select, .uneditable-input{
 @media screen and (min-width:1024px) {
 #top-left{
   position: relative;
+
 }
 
 .top-message{
@@ -234,6 +235,12 @@ input, textarea, select, .uneditable-input{
   border-right: 0 hidden transparent !important;
   border-bottom: transparent !important;
 }
+@media screen and (max-width: 481px) { 
+  .fc-time{
+    display:none;
+  }
+} 
+
 /* fade in*/
 .fadein {
   opacity: 0;
@@ -279,3 +286,4 @@ input, textarea, select, .uneditable-input{
 .datetime_select select{
   width:15%;
 }
+
