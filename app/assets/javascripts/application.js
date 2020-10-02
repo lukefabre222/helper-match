@@ -71,7 +71,7 @@ $(function () {
               },
             eventClick : function(event, jsEvent , view) {
               jsEvent.preventDefault();
-              $(`#inputScheduleEditForm${event.id}`).modal('show');
+              $('#inputScheduleEditForm${event.id}').modal('show');
             },
         });
     }
