@@ -5,9 +5,14 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @staff = Staff.find(params[:staff_id])
-    @events = Event.where(staff_id: params[:staff_id])
+    if @staff.status == 1
+      @events = Event.where(staff_id: params[:staff_id])
+    else
+      @events = Event.where(shop_name: @staff.name)
+    end
     @event = Event.new
     @shops = Staff.where(status: 2)
+    @staffs = Staff.where(status: 1)
   end
 
   # GET /events/1
@@ -25,6 +30,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @shops = Staff.where(status: 2)
+    @staffs = Staff.where(status: 1)
   end
 
   # POST /events
@@ -36,7 +42,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         flash[:success] = "スケジュールを作成しました"
-        format.html { redirect_to staff_events_path(@event.staff_id)}
+        format.html { redirect_to staff_events_path(current_staff.id)}
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -51,7 +57,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.update(event_params)
         flash[:success] = "スケジュールを更新しました"
-        format.html { redirect_to staff_events_path(@event.staff_id)}
+        format.html { redirect_to staff_events_path(current_staff.id)}
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -66,7 +72,7 @@ class EventsController < ApplicationController
     @event.destroy
     respond_to do |format|
       flash[:success] = "スケジュールを削除しました"
-      format.html { redirect_to staff_events_path(@event.staff_id)}
+      format.html { redirect_to staff_events_path(current_staff.id)}
       format.json { head :no_content }
     end
   end
@@ -83,6 +89,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:shop_name, :work_type, :status, :start_date, :end_date, :staff_id)
+      params.require(:event).permit(:shop_name, :staff_name, :work_type, :status, :start_date, :end_date, :staff_id)
     end
 end

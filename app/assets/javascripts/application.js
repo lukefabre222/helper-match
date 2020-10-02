@@ -25,7 +25,7 @@ $(function () {
 
         $(document).on('turbolinks:load', function () {
             Calendar();
-        });
+        }); 
         $(document).on('turbolinks:before-cache', clearCalendar);
 
           //events: '/events.json', 以下に追加
@@ -63,7 +63,7 @@ $(function () {
             eventTextColor: '#000000',
             eventRender: function(event, element) {
                 element.css("font-size", "0.8em");
-                element.css("padding", "5px");
+                element.css("padding", "5px");  
                 element.find(".fc-title").append(event.status);
             },
             dayClick : function ( date , jsEvent , view ) {
