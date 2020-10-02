@@ -4,6 +4,7 @@ if @staff.status == 1
     json.start event.start_date   
     json.end event.end_date
     json.status event.status
+    json.id event.id
     json.url staff_event_path(id: event.id, format: :html) 
 
     if event.status == "申請中"
@@ -19,6 +20,7 @@ else
     json.start event.start_date   
     json.end event.end_date
     json.status event.status
+    json.id event.id
     json.url staff_event_path(id: event.id, format: :html) 
 
     if event.status == "申請中"

@@ -1,0 +1,50 @@
+<% events.each do |event| %>
+  <div id='inputScheduleEditForm<%= event.id %>' class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-nm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">スケジュール編集</h4>
+        </div>
+        <div class="modal-body">
+          <div  class="col">
+            <%= form_with(model: event, url: staff_event_path(event.staff_id, event.id), method: :patch) do |form| %>
+            <div  class="col">
+              <div class="form-group">
+                <%= form.label :shop_name %>
+                <%= form.collection_select :shop_name, @shops, :name, :name %>
+              </div>
+              <div class="form-group">
+                <%= form.label :staff_name %>
+                <%= form.collection_select :staff_name, @staffs, :name, :name %>
+              </div>
+              <div class="form-group">
+                <%= form.label :work_type %>
+                <%= form.select :work_type, {'ヘルパー':1, 'OJT':2, '初期設定':3, '出張販売':4}%>
+              </div>
+              <div class="form-group datetime_select">
+                <%= form.label :start_date %><br>
+                <%= form.datetime_select :start_date, {default: Date.today + 10.hours + 00.minutes, minute_step: 10} %>
+              </div>
+              <div class="form-group datetime_select">
+                <%= form.label :end_date %><br>
+                <%= form.datetime_select :end_date, {default: Date.today + 19.hours + 00.minutes, minute_step: 10} %>
+              </div>
+              <div class="form-group">
+                <%= form.label :status %>
+                <%= form.select :status, {'申請する': "申請中", '確定する': "確定"}%>
+              </div>
+              <%= form.hidden_field :staff_id, value: @staff.id %>
+              <div class="modal-footer">
+                <%= form.button :type => "submit", class: "btn btn-primary  mt-3" do %>
+                  <i class="fas fa-edit"></i>
+                  予定登録
+                <% end %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

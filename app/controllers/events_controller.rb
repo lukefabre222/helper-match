@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   def index
     @staff = Staff.find(params[:staff_id])
     if @staff.status == 1
-      @events = Event.where(staff_id: params[:staff_id])
+      @events = Event.where(staff_name: @staff.name)
     else
       @events = Event.where(shop_name: @staff.name)
     end

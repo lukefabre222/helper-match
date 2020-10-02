@@ -69,6 +69,10 @@ $(function () {
             dayClick : function ( date , jsEvent , view ) {
               $('#inputScheduleForm').modal('show');
               },
+            eventClick : function(event, jsEvent , view) {
+              jsEvent.preventDefault();
+              $(`#inputScheduleEditForm${event.id}`).modal('show');
+            },
         });
     }
 });

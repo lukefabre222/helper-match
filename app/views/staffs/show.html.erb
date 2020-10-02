@@ -1,10 +1,15 @@
 <h1><%= @staff.name %></h1>
 
-<div>
+<div class="mb-3">
   <% if current_staff.status == 1 %>
     <%= link_to "日報ページへ", staff_reports_path(@staff), class:"btn btn-primary" %>
   <% end %>
+</div>
+<div>
   <%= link_to "予定表へ", staff_events_path(@staff), class:"btn btn-primary" %>
+  <% if @request.present? %>
+    <%= link_to "通知が#{@request.count}件有ります", staff_events_path(@staff), class:"notice blink" %>
+  <% end %>
 </div>
 <% if @staff.status == 1 %>
 <div class="row">

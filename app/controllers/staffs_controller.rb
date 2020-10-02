@@ -8,6 +8,7 @@ class StaffsController < ApplicationController
     @events = Event.where(staff_id: @staff.id)
     report_column = Report.column_names
     @report_column = report_column[2..13]
+    @request = Event.where(staff_name: @staff.name).where(status:"申請中")
   end
 
   def index 
