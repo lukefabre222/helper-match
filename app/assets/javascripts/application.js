@@ -65,6 +65,14 @@ $(function () {
                 element.css("font-size", "0.8em");
                 element.css("padding", "5px");  
                 element.find(".fc-title").append(event.status);
+                $(element).popover({
+                  title: event.title,
+                  content: event.status,
+                  trigger: 'hover',
+                  placement: 'top',
+                  container: 'body',
+                  html: true
+                });
             },
             dayClick : function ( date , jsEvent , view ) {
               $('#inputScheduleForm').modal('show');
