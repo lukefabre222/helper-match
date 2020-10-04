@@ -34,10 +34,10 @@
                         <td><%= Report.human_attribute_name(@report_column[5]) %></td>
                       </tr>
                       <tr>
-                        <td><%= average_column(@staff.id, :ftth)%>(<%= average_value(:ftth) %>)</td>
-                        <td><%= average_column(@staff.id, :tab_new)%>(<%= average_value(:tab_new) %>)</td>
-                        <td><%= average_column(@staff.id, :d_card_g)%></td>
-                        <td><%= average_column(@staff.id, :sls)%></td>
+                        <td id="ftth<%= @staff.id %>"><%= average_column(@staff.id, :ftth)%></td>
+                        <td id="tab_new<%= @staff.id %>"><%= average_column(@staff.id, :tab_new)%></td>
+                        <td id="d_card_g<%= @staff.id %>"><%= average_column(@staff.id, :d_card_g)%></td>
+                        <td id="sls<%= @staff.id %>"><%= average_column(@staff.id, :sls)%></td>
                       </tr>
                       <tr class="table-primary">
                         <td><%= Report.human_attribute_name(@report_column[6]) %></td>
@@ -47,8 +47,8 @@
                       </tr>
                       <tr>
                         <td><%= average_column(@staff.id, :h4d)%></td>
-                        <td><%= average_column(@staff.id, :mnp)%></td>
-                        <td><%= average_column(@staff.id, :migration)%></td>
+                        <td id="mnp<%= @staff.id %>"><%= average_column(@staff.id, :mnp)%></td>
+                        <td id="migraion<%= @staff.id %>"><%= average_column(@staff.id, :migration)%></td>
                         <td><%= total_work_days(@staff.id) %></td>
                       </tr>
                     </tbody>

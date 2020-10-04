@@ -4,11 +4,11 @@
   <% @staffs.each do |f| %>
     <div class="col-md-12 my-3">
       <div class="row no-gutters">
-        <div class="col-md-4 center">
+        <div class="col-md-3 center">
           <%= image_tag 'sample_avator.png', height: "170px", class:"avator_image" %>
-          <h5 class="card-title center"><%= link_to "#{f.name}", staff_path(f.id), class:"text-body"%></h5>
+          <h5 class="card-title center" id="staff_name<%= f.id %>"><%= link_to "#{f.name}", staff_path(f.id), class:"text-body"%></h5>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
           <div class="card-body pt-2 pb-0 px-1">
             <div class="row">
               <div class="col-md-12">
@@ -23,10 +23,10 @@
                         <td><%= Report.human_attribute_name(@report_column[5]) %></td>
                       </tr>
                       <tr>
-                        <td><%= average_column(f.id, :ftth) %></td>
-                        <td><%= average_column(f.id, :tab_new) %></td>
-                        <td><%= average_column(f.id, :d_card_g) %></td>
-                        <td><%= average_column(f.id, :sls) %></td>
+                        <td id="ftth<%= f.id %>"><%= average_column(f.id, :ftth) %></td>
+                        <td id="tab_new<%= f.id %>"><%= average_column(f.id, :tab_new) %></td>
+                        <td id="d_card_g<%= f.id %>"><%= average_column(f.id, :d_card_g) %></td>
+                        <td id="sls<%= f.id %>"><%= average_column(f.id, :sls) %></td>
                       </tr>
                       <tr class="table-primary">
                         <td><%= Report.human_attribute_name(@report_column[6]) %></td>
@@ -36,8 +36,8 @@
                       </tr>
                       <tr>
                         <td><%= average_column(f.id, :h4d) %></td>
-                        <td><%= average_column(f.id, :mnp) %></td>
-                        <td><%= average_column(f.id, :migration) %></td>
+                        <td id="mnp<%= f.id %>"><%= average_column(f.id, :mnp) %></td>
+                        <td id="migration<%= f.id %>"><%= average_column(f.id, :migration) %></td>
                         <td><%= total_work_days(f.id) %></td>
                       </tr>
                     </tbody>
@@ -56,11 +56,67 @@
             </div>
           </div>
         </div>
+        <div class="col-md-5">
+          <% staff_name = f.name %>
+          <% #全体の平均値算出  %>
+          <% average_value = [] %>
+          <% average_value[0] = average_value(:ftth) %>
+          <% average_value[1] = average_value(:tab_new) %>
+          <% average_value[2] = average_value(:d_card_g) %>
+          <% average_value[3] = average_value(:sls) %>
+          <% average_value[4] = average_value(:mnp) %>
+          <% average_value[5] = average_value(:migration) %>
+          <% @average_value = average_value %>
+          <% @staff_count = Staff.where(status:1).count %>
+          <canvas id="myChart<%= f.id %>"></canvas>
+        </div>
       </div>
     </div>
   <% end  %>
 </div>
 
+<script>
+var length = <%= @staff_count %> + 1
+for (let i =1; i < length; i++){
+var ctx = document.getElementById(`myChart${i}`);
+var staff_name = document.getElementById(`staff_name${i}`);
+var ftth = document.getElementById(`ftth${i}`).textContent;
+var tab_new = document.getElementById(`tab_new${i}`).textContent;
+var d_card_g = document.getElementById(`d_card_g${i}`).textContent;
+var sls = document.getElementById(`sls${i}`).textContent;
+var mnp = document.getElementById(`mnp${i}`).textContent;
+var migration = document.getElementById(`migration${i}`).textContent;
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ["光","タブ新規","GOLD","SLS","MNP","LTE移行"],
+    datasets: [{
+      label: staff_name.textContent,
+      backgroundColor: "rgba(0,0,80,0.4)",
+      borderColor: "rgba(0,0,80,1)",
+      data: [ftth, tab_new, d_card_g, sls, mnp, migration]
+    }, {
+      label: '平均',
+      backgroundColor: "rgba(0,255,0,0.4)",
+      borderColor: "rgba(0,255,0,1)",
+      data: <%= @average_value %>
+    }]
+  },
+  options: { 
+    scales:{
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 3,
+          fontSize: 12,
+          stepSize: 0.5
+        }
+      }]
+    }
+  }
+});
+}
+</script>
 
 <!--モーダル-->
 
