@@ -242,6 +242,7 @@ input, textarea, select, .uneditable-input{
 } 
 
 /* fade in*/
+@media screen and (max-width: 481px) { 
 .fadein {
   opacity: 0;
   transform : translate(0, 50px);
@@ -269,7 +270,7 @@ input, textarea, select, .uneditable-input{
   opacity: 1;
   transform: translate(0, 0);
 }
-
+}
 .report-list{
   display: flex;
   flex-flow: row wrap;

@@ -41,7 +41,7 @@
           </div>
           <div class="form-group">
             <%= form.label :status %>
-            <%= form.select :status, {'申請する': "申請中", '確定する': "確定"}%>
+            <%= form.select :status, {'申請する': "申請中"}%>
           </div>
           <%= form.hidden_field :staff_id, value: @staff.id %>
           <div class="modal-footer">
