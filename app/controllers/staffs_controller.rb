@@ -1,7 +1,6 @@
 class StaffsController < ApplicationController
   before_action :logged_in_staff, only: [:edit, :update]
   before_action :correct_staff,   only: [:show, :edit, :update]
-  before_action :store_only, only: [:index]
 
   def show
     @staff = Staff.find(params[:id])
@@ -12,8 +11,12 @@ class StaffsController < ApplicationController
   end
 
   def index 
-    @staffs = Staff.where(status: 1)
-    report_column = Report.column_names
+    if current_staff.status == 2
+      @staffs = Staff.where(status: 1)
+    elsif current_staff.status == 1
+      @staffs = Staff.where(status: 2)
+    end
+      report_column = Report.column_names
     @report_column = report_column[2..13]
   end
 
@@ -33,9 +36,10 @@ class StaffsController < ApplicationController
     @staff = Staff.find(params[:id])
     if @staff.update_attributes(staff_params)
       flash[:success] = "情報を更新しました"
-      redirect_to staffs_path
+      redirect_to staff_path(@staff.id)
     else
-      render 'edit'
+      flash[:danger] = "情報の更新に失敗しました"
+      redirect_to staff_path(@staff.id)
     end
   end
 
@@ -58,11 +62,6 @@ class StaffsController < ApplicationController
   end
 
   private
-  def store_only
-    redirect_to(root_url) unless current_staff.status == 2
-  end
-
-
   def staff_params
     params.require(:staff).permit(:name,:email,:password,:password_confirmation, :status)
   end

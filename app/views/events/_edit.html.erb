@@ -13,13 +13,24 @@
             <%= form_with(model: event, url: staff_event_path(event.staff_id, event.id), method: :patch) do |form| %>
             <div  class="col">
               <div class="form-group">
-                <%= form.label :shop_name %>
-                <%= form.collection_select :shop_name, @shops, :name, :name %>
+                <% if current_staff.status == 2 %>
+                  <%= form.label :shop_name %>
+                  <%= form.text_field :shop_name, placeholder: "#{@staff.name}", readonly: true %>
+                <% else %>
+                  <%= form.label :shop_name %>
+                  <%= form.collection_select :shop_name, @shops, :name, :name %>
+                <% end %>
               </div>
               <div class="form-group">
-                <%= form.label :staff_name %>
-                <%= form.collection_select :staff_name, @staffs, :name, :name %>
+                <% if current_staff.status == 1%>
+                  <%= form.label :staff_name %>
+                  <%= form.text_field :staff_name, placeholder: "#{@staff.name}", readonly: true %>
+                <% else%>
+                  <%= form.label :staff_name %>
+                  <%= form.collection_select :staff_name, @staffs, :name, :name %>
+                <% end %>
               </div>
+
               <div class="form-group">
                 <%= form.label :work_type %>
                 <%= form.select :work_type, {'ヘルパー':1, 'OJT':2, '初期設定':3, '出張販売':4}%>
@@ -34,7 +45,11 @@
               </div>
               <div class="form-group">
                 <%= form.label :status %>
-                <%= form.select :status, {'申請する': "申請中", '確定する': "確定"}%>
+                <% if event.staff_id == current_staff.id%>
+                  <%= form.select :status, {'申請する': "申請中"}%>
+                <% else %>
+                  <%= form.select :status, {'申請する': "申請中", '確定する': "確定"}%>
+                <% end %>
               </div>
               <%= form.hidden_field :staff_id, value: @staff.id %>
               <div class="modal-footer">

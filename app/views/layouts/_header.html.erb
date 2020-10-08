@@ -19,9 +19,13 @@
         <li class="nav-item">
           <%= link_to "Home", root_path, class:"nav-link" %>
         </li>
-        <% if logged_in? && current_staff.status == 2 %>
+        <% if logged_in?%>
           <li>
+          <% if current_staff.status == 1 %>
+            <%= link_to "Shops", staffs_path, class:"nav-link" %>
+          <% else %>
             <%= link_to "Staffs", staffs_path, class:"nav-link" %>
+          <% end %>
           </li>
         <% end %>
         <% if logged_in? %>

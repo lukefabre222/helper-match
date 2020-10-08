@@ -1,96 +1,15 @@
 <% provide(:title, 'スタッフ一覧') %>
-<h1>スタッフ一覧</h1>
-<div class="row">
-  <% @staffs.each do |f| %>
-    <div class="col-md-12 my-3">
-      <div class="row no-gutters">
-        <div class="col-md-3 center">
-          <%= image_tag 'sample_avator.png', height: "170px", class:"avator_image" %>
-          <h5 class="card-title center" id="staff_name<%= f.id %>"><%= link_to "#{f.name}", staff_path(f.id), class:"text-body"%></h5>
-        </div>
-        <div class="col-md-4">
-          <div class="card-body pt-2 pb-0 px-1">
-            <div class="row">
-              <div class="col-md-12">
-                <h6 class="card-title center">1日あたり生産性(直近90日)</h6>
-                <div class="report-list">
-                  <table class="table my-0">
-                    <tbody>
-                      <tr class="table-primary">
-                        <td><%= Report.human_attribute_name(@report_column[0]) %></td>
-                        <td><%= Report.human_attribute_name(@report_column[1]) %></td>
-                        <td><%= Report.human_attribute_name(@report_column[3]) %></td>
-                        <td><%= Report.human_attribute_name(@report_column[5]) %></td>
-                      </tr>
-                      <tr>
-                        <td id="ftth<%= f.id %>"><%= average_column(f.id, :ftth) %></td>
-                        <td id="tab_new<%= f.id %>"><%= average_column(f.id, :tab_new) %></td>
-                        <td id="d_card_g<%= f.id %>"><%= average_column(f.id, :d_card_g) %></td>
-                        <td id="sls<%= f.id %>"><%= average_column(f.id, :sls) %></td>
-                      </tr>
-                      <tr class="table-primary">
-                        <td><%= Report.human_attribute_name(@report_column[6]) %></td>
-                        <td><%= Report.human_attribute_name(@report_column[10]) %></td>
-                        <td><%= Report.human_attribute_name(@report_column[11]) %></td>
-                        <td>入店回数</td>
-                      </tr>
-                      <tr>
-                        <td><%= average_column(f.id, :h4d) %></td>
-                        <td id="mnp<%= f.id %>"><%= average_column(f.id, :mnp) %></td>
-                        <td id="migration<%= f.id %>"><%= average_column(f.id, :migration) %></td>
-                        <td><%= total_work_days(f.id) %></td>
-                      </tr>
-                      <tr class="table-primary">
-                        <td colspan="2">希望単価</td>
-                        <td colspan="2">稼働予定(確定数/可能数)</td>
-                      </tr>
-                      <tr>
-                        <td colspan="2">25000円</td>
-                        <td colspan="2">
-                          <%= Date.today.strftime('%m') %>月：
-                          <%= Date.today.next_month.strftime('%m') %>月：
-                        </td>
-                      </tr>
-                      <tr class="table-primary">
-                        <td colspan="4">レビュー</td>
-                      </tr>
-                      <tr>
-                        <td colspan="4">★★★★☆</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>  
-            </div>
-            <div class="row">
-              <div class="col-md-12 center">
-                <% if f.id == current_staff.id  %>
-                  <%= link_to "編集", edit_staff_path(f.id), remote: true, class:"btn btn-sm btn-primary" %>
-                  <%= link_to "削除", staff_path(f.id), method: :delete,
-                            data: { confirm: "削除してよろしいですか？"},class: "btn btn-sm btn-primary" %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5">
-          <% staff_name = f.name %>
-          <% #全体の平均値算出  %>
-          <% average_value = [] %>
-          <% average_value[0] = average_value(:ftth) %>
-          <% average_value[1] = average_value(:tab_new) %>
-          <% average_value[2] = average_value(:d_card_g) %>
-          <% average_value[3] = average_value(:sls) %>
-          <% average_value[4] = average_value(:mnp) %>
-          <% average_value[5] = average_value(:migration) %>
-          <% @average_value = average_value %>
-          <% @staff_count = Staff.where(status:1).count %>
-          <canvas id="myChart<%= f.id %>"></canvas>
-        </div>
-      </div>
-    </div>
-  <% end  %>
-</div>
+<% if current_staff.status == 1%>
+  <h1>店舗一覧</h1>
+  <div class="row">
+    <%= render 'index_shops'%>
+  </div>
+<% else %>
+  <h1>スタッフ一覧</h1>
+  <div class="row">
+    <%= render 'index_staffs'%>
+  </div>
+<% end %>
 
 <script>
 var length = <%= @staff_count %> + 1
@@ -135,6 +54,4 @@ var myChart = new Chart(ctx, {
 }
 </script>
 
-<!--モーダル-->
 
-<div id="edit_staff" class="modal fade" tabindex="1000" role="dialog" aria-hidden="true"></div>

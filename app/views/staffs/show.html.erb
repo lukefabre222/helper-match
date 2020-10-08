@@ -1,16 +1,19 @@
 <h1><%= @staff.name %></h1>
-
-<div class="mb-3">
-  <% if current_staff.status == 1 %>
-    <%= link_to "日報ページへ", staff_reports_path(@staff), class:"btn btn-primary" %>
-  <% end %>
-</div>
-<div>
-  <%= link_to "予定表へ", staff_events_path(@staff), class:"btn btn-primary" %>
+<div class="row">
   <% if @request.present? %>
-    <%= link_to "通知が#{@request.count}件有ります", staff_events_path(@staff), class:"notice blink" %>
+    <%= link_to "店舗から申請が#{@request.count}件有ります", staff_events_path(@staff), class:"notice blink mx-auto" %>
   <% end %>
 </div>
+<div class="row">
+  <div class="mx-auto">
+    <% if current_staff.status == 1 && current_staff.id == @staff.id %>
+      <%= link_to "日報ページへ", staff_reports_path(@staff), class:"btn btn-primary mr-3" %>
+    <% end %>
+    <%= link_to "予定表へ", staff_events_path(@staff), class:"btn btn-primary mr-3" %>
+    <%= link_to "編集", edit_staff_path(@staff.id), remote: true, class:"btn btn btn-primary mr-3" %>
+  </div>
+</div>
+
 <% if @staff.status == 1 %>
 <div class="row">
     <div class="col-md-12 my-3">
@@ -101,7 +104,9 @@
     </div>
 </div>
 <% end %>
+<!--モーダル-->
 
+<div id="edit_staff" class="modal fade" tabindex="1000" role="dialog" aria-hidden="true"></div>
 <script>
 var ctx = document.getElementById("myChart");
 var staff_name = document.getElementById("staff_name");
