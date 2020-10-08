@@ -19,21 +19,19 @@
         <%= form_with model: @event, url: staff_events_path(params[:staff_id]) do |form| %>
         <div  class="col">
           <div class="form-group">
-            <% if current_staff.status == 2 %>
-              <%= form.label :shop_name %>
-              <%= form.text_field :shop_name, placeholder: "#{@staff.name}", readonly: true %>
-            <% else %>
-              <%= form.label :shop_name %>
+            <%= form.label :shop_name %>
+            <% if current_staff.status == 1%>
               <%= form.collection_select :shop_name, @shops, :name, :name %>
+            <% else %>
+              <%= form.text_field :shop_name, value: current_staff.name, readonly: true %>
             <% end %>
           </div>
           <div class="form-group">
-            <% if current_staff.status == 1%>
-              <%= form.label :staff_name %>
-              <%= form.text_field :staff_name, placeholder: "#{@staff.name}", readonly: true %>
-            <% else%>
-              <%= form.label :staff_name %>
+            <%= form.label :staff_name %>
+            <% if current_staff.status == 2%>
               <%= form.collection_select :staff_name, @staffs, :name, :name %>
+            <% else %>
+              <%= form.text_field :staff_name, value: current_staff.name, readonly: true %>
             <% end %>
           </div>
           <div class="form-group">

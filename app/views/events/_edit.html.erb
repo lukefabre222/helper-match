@@ -1,68 +1,76 @@
 <% events.each do |event| %>
   <div id='inputScheduleEditForm<%= event.id %>' class="modal fade" tabindex="-1">
-    <div class="modal-dialog modal-nm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">スケジュール編集</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div  class="col">
-            <%= form_with(model: event, url: staff_event_path(event.staff_id, event.id), method: :patch) do |form| %>
+    <% if current_staff.id == @staff.id %>
+      <div class="modal-dialog modal-nm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">スケジュール編集</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
             <div  class="col">
-              <div class="form-group">
-                <% if current_staff.status == 2 %>
+              <%= form_with(model: event, url: staff_event_path(event.staff_id, event.id), method: :patch) do |form| %>
+              <div  class="col">
+                <div class="form-group">
                   <%= form.label :shop_name %>
-                  <%= form.text_field :shop_name, placeholder: "#{@staff.name}", readonly: true %>
-                <% else %>
-                  <%= form.label :shop_name %>
-                  <%= form.collection_select :shop_name, @shops, :name, :name %>
-                <% end %>
-              </div>
-              <div class="form-group">
-                <% if current_staff.status == 1%>
+                  <%= form.text_field :shop_name, value: event.shop_name, readonly: true %>
+                </div>
+                <div class="form-group">
                   <%= form.label :staff_name %>
-                  <%= form.text_field :staff_name, placeholder: "#{@staff.name}", readonly: true %>
-                <% else%>
-                  <%= form.label :staff_name %>
-                  <%= form.collection_select :staff_name, @staffs, :name, :name %>
-                <% end %>
-              </div>
+                  <%= form.text_field :staff_name, value: event.staff_name, readonly: true %>
+                </div>
 
-              <div class="form-group">
-                <%= form.label :work_type %>
-                <%= form.select :work_type, {'ヘルパー':1, 'OJT':2, '初期設定':3, '出張販売':4}%>
+                <div class="form-group">
+                  <%= form.label :work_type %>
+                  <%= form.select :work_type, {'ヘルパー':1, 'OJT':2, '初期設定':3, '出張販売':4}%>
+                </div>
+                <div class="form-group datetime_select">
+                  <%= form.label :start_date %><br>
+                  <%= form.datetime_select :start_date, {default: Date.today + 10.hours + 00.minutes, minute_step: 10} %>
+                </div>
+                <div class="form-group datetime_select">
+                  <%= form.label :end_date %><br>
+                  <%= form.datetime_select :end_date, {default: Date.today + 19.hours + 00.minutes, minute_step: 10} %>
+                </div>
+                <div class="form-group">
+                  <%= form.label :status %>
+                  <% if event.staff_id == current_staff.id%>
+                    <%= form.select :status, {'申請する': "申請中"}%>
+                  <% else %>
+                    <%= form.select :status, {'申請する': "申請中", '確定する': "確定"}%>
+                  <% end %>
+                </div>
+                <div class="modal-footer">
+                  <%= form.button :type => "submit", class: "btn btn-primary  mt-3" do %>
+                    <i class="fas fa-edit"></i>
+                    予定登録
+                  <% end %>
+                  <% if event.shop_name == current_staff.name || event.staff_name == current_staff.name %>
+                    <% if event.status == "申請中"%>
+                      <%= link_to 'キャンセルする', staff_event_path(@staff.id, event.id),method: :delete, class: "btn btn-danger" %>
+                    <% end %>
+                  <% end %>
+                </div>
+                
               </div>
-              <div class="form-group datetime_select">
-                <%= form.label :start_date %><br>
-                <%= form.datetime_select :start_date, {default: Date.today + 10.hours + 00.minutes, minute_step: 10} %>
-              </div>
-              <div class="form-group datetime_select">
-                <%= form.label :end_date %><br>
-                <%= form.datetime_select :end_date, {default: Date.today + 19.hours + 00.minutes, minute_step: 10} %>
-              </div>
-              <div class="form-group">
-                <%= form.label :status %>
-                <% if event.staff_id == current_staff.id%>
-                  <%= form.select :status, {'申請する': "申請中"}%>
-                <% else %>
-                  <%= form.select :status, {'申請する': "申請中", '確定する': "確定"}%>
-                <% end %>
-              </div>
-              <%= form.hidden_field :staff_id, value: @staff.id %>
-              <div class="modal-footer">
-                <%= form.button :type => "submit", class: "btn btn-primary  mt-3" do %>
-                  <i class="fas fa-edit"></i>
-                  予定登録
-                <% end %>
-              </div>
+              <% end %>
             </div>
-            <% end %>
           </div>
         </div>
       </div>
-    </div>
+    <% else %>
+      <div class="modal-dialog modal-nm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">自身のスケジュールのみ変更できます</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>
