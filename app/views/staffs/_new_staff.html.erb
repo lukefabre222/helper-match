@@ -17,6 +17,9 @@
             <%= f.label :email %>
             <%= f.email_field :email, class:"form-cotrol"%>
 
+            <%= f.label :price %>
+            <%= f.number_field :price, min: 5000, max: 40000, step: 1000, class:"form-cotrol" %>
+
             <%= f.label :password %>
             <%= f.password_field :password, class:"form-cotrol" %>
 

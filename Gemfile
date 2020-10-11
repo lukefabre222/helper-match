@@ -16,6 +16,7 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'chart-js-rails', '~> 0.1.4'
 gem 'roo'
+gem 'autonumeric-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

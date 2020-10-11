@@ -7,7 +7,11 @@ class StaffsController < ApplicationController
     @events = Event.where(staff_id: @staff.id)
     report_column = Report.column_names
     @report_column = report_column[2..13]
-    @request = Event.where(staff_name: @staff.name).where(status:"申請中")
+    if current_staff.status == 1
+      @request = Event.where(staff_name: @staff.name).where(status:"申請中")
+    else
+      @request = Event.where(shop_name: @staff.name).where(status:"申請中")
+    end
   end
 
   def index 
@@ -63,7 +67,7 @@ class StaffsController < ApplicationController
 
   private
   def staff_params
-    params.require(:staff).permit(:name,:email,:password,:password_confirmation, :status)
+    params.require(:staff).permit(:name,:email,:password,:password_confirmation, :status, :price)
   end
 
   def logged_in_staff

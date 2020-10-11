@@ -27,26 +27,17 @@
             <%= link_to "Staffs", staffs_path, class:"nav-link" %>
           <% end %>
           </li>
-        <% end %>
-        <% if logged_in? %>
           <li class="nav-item z">
             <%= link_to "Sign out", logout_path, method: :delete, class:"nav-link" %>
           </li>
-          <!-- ドロップダウンメニュー -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" 
-                href="#" 
-                id="navbarDropdown" 
-                role="button" 
-                data-toggle="dropdown" 
-                aria-haspopup="true" 
-                aria-expanded="false">
-              Menu
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <%= link_to "My page", current_staff, class:"dropdown-item" %>
-                <a class="dropdown-item" href="#">Drop down menu</a>
-            </div>
+          <li class="nav-item z">
+            <%= link_to "My page", current_staff, class:"nav-link" %>
+          </li>
+          <li class="nav-item z">
+            <%= link_to "Calendar", staff_events_path(current_staff.id), class:"nav-link" %>
+          </li>
+          <li class="nav-item z">
+            <%= link_to "Report", staff_reports_path(current_staff.id), class:"nav-link" %>
           </li>
         <% else %>
           <li class="nav-item z">

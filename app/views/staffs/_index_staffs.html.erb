@@ -44,7 +44,7 @@
                         <td colspan="2">稼働予定(確定数/可能数)</td>
                       </tr>
                       <tr>
-                        <td colspan="2">25000円</td>
+                        <td colspan="2">¥<%= f.price if f.price.presence %></td>
                         <td colspan="2">
                           <%= Date.today.strftime('%m') %>月：
                           <%= Date.today.next_month.strftime('%m') %>月：

@@ -1,4 +1,5 @@
 //= require jquery
+//= require autonumeric
 //= require popper
 //= require bootstrap-sprockets
 //= require Chart.min

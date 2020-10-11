@@ -2,9 +2,11 @@
   name = Faker::Japanese::Name.name
   email = "email#{n+1}@sample.com"
   password = "password"
+  price = 25000 + n*1000
   Staff.create!(name: name,
                 email: email,
                 status: 1,
+                price: price,
                 password: password,
                 password_confirmation: password)
 end

@@ -20,6 +20,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認)
+        price: 希望単価(5000~40000)
         basic_time: 基準時間
         work_time: 勤務時間
         remember_me: ログインを記憶

@@ -1,16 +1,16 @@
 <h1><%= @staff.name %></h1>
 <div class="row">
-  <% if @request.present? %>
+  <% if @request.present? %> 
     <%= link_to "店舗から申請が#{@request.count}件有ります", staff_events_path(@staff), class:"notice blink mx-auto" %>
   <% end %>
 </div>
 <div class="row">
   <div class="mx-auto">
+  <%= link_to "予定表へ", staff_events_path(@staff), class:"btn btn-primary mr-3" %>
     <% if current_staff.status == 1 && current_staff.id == @staff.id %>
       <%= link_to "日報ページへ", staff_reports_path(@staff), class:"btn btn-primary mr-3" %>
+      <%= link_to "編集", edit_staff_path(@staff.id), remote: true, class:"btn btn btn-primary mr-3" %>
     <% end %>
-    <%= link_to "予定表へ", staff_events_path(@staff), class:"btn btn-primary mr-3" %>
-    <%= link_to "編集", edit_staff_path(@staff.id), remote: true, class:"btn btn btn-primary mr-3" %>
   </div>
 </div>
 
@@ -59,7 +59,7 @@
                         <td colspan="2">稼働予定(確定数/可能数)</td>
                       </tr>
                       <tr>
-                        <td colspan="2">25000円</td>
+                        <td colspan="2">¥<%= @staff.price if @staff.price.presence %></td>
                         <td colspan="2">
                           <%= Date.today.strftime('%m') %>月：
                           <%= Date.today.next_month.strftime('%m') %>月：
