@@ -13,13 +13,15 @@
     <% end %>
   </div>
 </div>
-
 <% if @staff.status == 1 %>
 <div class="row">
     <div class="col-md-12 my-3">
       <div class="row no-gutters">
         <div class="col-md-3 center my-auto">
           <%= image_tag 'sample_avator.png', height: "170px", class:"avator_image" %>
+          <div id="likes_buttons_<%= @staff.id %>">
+            <%= render partial: 'likes/like', locals: { staff: @staff} %>
+          </div>
         </div>
         <div class="col-md-4 my-auto">
           <div class="card-body pt-2 pb-0 px-1">
@@ -126,6 +128,17 @@ var myChart = new Chart(ctx, {
       data: <%= @average_value %>
     }]
   },
-
+  options: { 
+    scales:{
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 3,
+          fontSize: 12,
+          stepSize: 0.5
+        }
+      }]
+    }
+  }
 });
 </script>

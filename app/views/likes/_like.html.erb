@@ -1,0 +1,21 @@
+<div class="row mx-auto">
+  <div class="m-auto">
+    <p class="mb-1"><%= followed_count(staff.id) %></p>
+    <p style="font-size:12px;">フォロワー</p>
+  </div>
+  <div class="m-auto">
+    <p class="mb-1"><%= follow_count(staff.id) %></p>
+    <p style="font-size:12px;">フォロー中</p>
+  </div>
+  <% unless current_staff.id == staff.id%>
+    <% if already_like?(current_staff.id, staff.id)%>
+      <div class="m-auto">
+        <%= link_to "フォロー解除", staff_like_path(staff.id, staff.likes), method: :delete, remote: true, class:"btn btn-sm btn-light" %>
+      </div>
+    <% else %>
+      <div class="m-auto">
+        <%= link_to "フォローする", staff_likes_path(staff.id), method: :post, remote: true, class:"btn btn-sm btn-primary" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
