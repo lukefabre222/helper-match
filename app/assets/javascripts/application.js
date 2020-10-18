@@ -75,7 +75,17 @@ $(function () {
                   html: true
                 });
             },
-            dayClick : function ( date , jsEvent , view ) {
+            dayClick : function ( date, jsEvent , view ) {
+
+              var year = moment(date).year();
+              var month = moment(date).month()+1; //1月が0のため+1する
+              var day = moment(date).date();
+              $('#event_start_date_1i').val(year);
+              $('#event_start_date_2i').val(month);
+              $('#event_start_date_3i').val(day);
+              $('#event_end_date_1i').val(year);
+              $('#event_end_date_2i').val(month);
+              $('#event_end_date_3i').val(day);
               $('#inputScheduleForm').modal('show');
               },
             eventClick : function(event, jsEvent , view) {

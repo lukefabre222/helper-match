@@ -1,5 +1,18 @@
 <h1>予定表</h1>
-<%= link_to '新規登録', new_staff_event_path, class: "btn btn-primary" %>
+<% if @staff.id == current_staff.id %>
+  <div class="row my-3">
+
+    <div class="col-md-4 center">
+      店舗からの申請：<%= request_sum(@staff.name) %>件
+    </div>
+    <div class="col-md-4 center">
+      稼働確定数：<%= work_sum(@staff.name) %>日
+    </div>
+    <div class="col-md-4 center">
+      稼働総額(確定分)：<%= price_sum(@staff.name) %>円
+    </div>
+  </div>
+<% end %>
 <div id="calendar"></div>
 
 <br>
@@ -37,6 +50,10 @@
           <div class="form-group">
             <%= form.label :work_type %>
             <%= form.select :work_type, {'ヘルパー':1, 'OJT':2, '初期設定':3, '出張販売':4}%>
+          </div>
+          <div class="form-group">  
+            <%= form.label :price %>
+            <%= form.number_field :price, min: 5000, max: 40000, step:1000, class:"form-cotrol" %>
           </div>
           <div class="form-group datetime_select">
             <%= form.label :start_date %><br>
