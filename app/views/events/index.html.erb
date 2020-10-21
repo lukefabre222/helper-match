@@ -1,17 +1,33 @@
 <h1>予定表</h1>
 <% if @staff.id == current_staff.id %>
+  <% if @staff.status == 1%>
+    <div class="row my-3">
+      <div class="col-md-4 center">
+        店舗からの申請：<%= request_sum(@staff.name) %>件
+      </div>
+      <div class="col-md-4 center">
+        稼働確定数：<%= work_sum(@staff.name) %>日
+      </div>
+      <div class="col-md-4 center">
+        稼働総額(確定分)：<%= price_sum(@staff.name) %>円
+      </div>
+    </div>
+  <% else %>
   <div class="row my-3">
+      <div class="col-md-4 center">
+        スタッフからの申請：<%= request_sum_shop(@staff.name) %>件
+      </div>
+      <div class="col-md-4 center">
+        ヘルパー稼働確定数：<%= work_sum_shop(@staff.name) %>日
+      </div>
+      <div class="col-md-4 center">
+        支払い総額(確定分)：<%= price_sum_shop(@staff.name) %>円
+      </div>
+    </div>
 
-    <div class="col-md-4 center">
-      店舗からの申請：<%= request_sum(@staff.name) %>件
-    </div>
-    <div class="col-md-4 center">
-      稼働確定数：<%= work_sum(@staff.name) %>日
-    </div>
-    <div class="col-md-4 center">
-      稼働総額(確定分)：<%= price_sum(@staff.name) %>円
-    </div>
-  </div>
+  <% end %>
+
+
 <% end %>
 <div id="calendar"></div>
 
