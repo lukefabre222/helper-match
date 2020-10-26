@@ -11,6 +11,9 @@
           <%= form_for(@staff) do |f| %>
             <%= render 'shared/error_messages' %>
 
+            <%= f.label :img %>
+            <%= f.file_field :img, id: :staff_img %>
+
             <%= f.label :name %>
             <%= f.text_field :name, class:"form-cotrol is-invalid"%>
             

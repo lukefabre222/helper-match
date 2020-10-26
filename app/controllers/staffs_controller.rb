@@ -16,9 +16,9 @@ class StaffsController < ApplicationController
 
   def index 
     if current_staff.status == 2
-      @staffs = Staff.where(status: 1)
+      @staffs = Staff.where(status: 1).order(id: "ASC")
     elsif current_staff.status == 1
-      @staffs = Staff.where(status: 2)
+      @staffs = Staff.where(status: 2).order(id: "ASC")
     end
       report_column = Report.column_names
     @report_column = report_column[2..13]
@@ -67,7 +67,7 @@ class StaffsController < ApplicationController
 
   private
   def staff_params
-    params.require(:staff).permit(:name,:email,:password,:password_confirmation, :status, :price)
+    params.require(:staff).permit(:name,:email,:password,:password_confirmation, :status, :price, :img)
   end
 
   def logged_in_staff
