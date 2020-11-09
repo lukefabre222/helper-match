@@ -83,7 +83,7 @@
             <%= form.label :status %>
             <%= form.select :status, {'申請する': "申請中"}%>
           </div>
-          <%= form.hidden_field :staff_id, value: @staff.id %>
+          <%= form.hidden_field :staff_id, value: current_staff.id %>
           <div class="modal-footer">
             <%= form.button :type => "submit", class: "btn btn-primary  mt-3" do %>
               <i class="fas fa-edit"></i>
